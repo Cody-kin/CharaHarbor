@@ -9,6 +9,8 @@ import sys
 
 
 def configure(path,ask=input):
+    from companion.console import configure as configure_console
+    configure_console()
     if path.exists():raise SystemExit('Config exists; edit it yourself. No overwrite performed.')
     c=json.loads(Path('examples/demo.json').read_text(encoding='utf-8'))
     print('配置不保存API key。真实模式需已安装并登录的本机微信桥；请先读 docs/WECHAT.md。')
@@ -37,6 +39,8 @@ def configure(path,ask=input):
 
 
 def main():
+    from companion.console import configure as configure_console
+    configure_console()
     os.chdir(Path(__file__).resolve().parent)
     p=argparse.ArgumentParser();p.add_argument('action',nargs='?',choices=['demo','configure','doctor','live']);args=p.parse_args()
     action=args.action

@@ -31,6 +31,8 @@ class Lock:
 
 
 def main():
+    from .console import configure
+    configure()
     parser=argparse.ArgumentParser(description="Companion core; demo by default, no WeChat login automation")
     parser.add_argument("command",choices=["check","run","serve","tick","status","recover-setup"])
     parser.add_argument("--config",default="examples/demo.json")

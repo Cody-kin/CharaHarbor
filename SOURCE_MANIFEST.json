@@ -12,7 +12,7 @@
     "README.md": "65e9f3e12735baeece70da38280df4c7fb24e7b6ca2792a0540e9002642128a9",
     "start.cmd": "c1e4b152756dc766431e894a379084477c5b2cff952024c995a411d6747fc23d",
     "RESEARCH.md": "ff184199a65cf5c9262f6d687d034357a8067b01cd8889ac95280f0cb894d4a1",
-    "launch.py": "b7edbf8396b13fa010afc52004315c4250806085f4d9b9e9e46636ffb1dc8314",
+    "launch.py": "5f30147b218dba5f9c26a9a1f90ed2ea8a855fb0315de3a9f0c4262df5fabfdd",
     ".gitignore": "128c482979308e53b1a306fb503e52d49495fe10dc56c83871842caf647d2895",
     "install.py": "80ae9a771aa928770e63473de0b3ecbde0961312355720da44c1b04b644424d0",
     "demo.py": "1292a15e0b3adcd9321dc5da6e50567976412d850390e1a1c1a82fe173ca7dbd",
@@ -38,7 +38,7 @@
     "tests/test_character_state.py": "bc23c5aa895f207ea02b14f7dfcef9ba313d17bb7e3fcb1327c4436315528af2",
     "tests/test_public_search.py": "b578ce08e64cf4eed0b0772290541df783a968e08cbeed081a6e64bb76820141",
     "tests/test_tools.py": "3fa5ba21de9d2b069961a56dd7218b161e42487140fdc46b66722bb6525b84e5",
-    "tests/test_launcher.py": "802b574c459cf04fdd0e26d2015c106a092ceb43878d58d2400a4266edfd02ee",
+    "tests/test_launcher.py": "88fd8eff0313a17355307d6ad1ba5330aa692a816f51b51d64de0e0cdb5273a5",
     "roles/mutsumi.json": "dbf7ea4d9867ed755930a8e5bce2f2c7bc25f5c9baab363381ced9feed63f50a",
     "roles/lighthouse-original.json": "dd3b6044e725ee295bb50602a1765202d56448dd426ed6867c4262ab3f903259",
     "docs/USER_GUIDE.md": "b0fc112ed8ee9828460992756ecb96932100970ba14685dadba591a8b2534175",
@@ -72,8 +72,9 @@
     "companion/core.py": "dc08243deea43840d26d49578e8b891a179f2e19ce5d1cb87d9e2c0d56bcba01",
     "companion/media_worker.py": "50748a45fc96d131c6d3aafa2d11735d3c00cd1021a1501520c3e08a8822f754",
     "companion/gallery.py": "1923728ff00a21abcfee53d9cf1779ceadeaa0de7dafe77860fb1140916cae09",
-    "companion/__main__.py": "edc0c72d071153f26f1231d226cbdd31725d334463184f681ad96495ed28e0f1",
-    "companion/public_search.py": "4a6b52e4c5b1b7bf5821467b14c1d593ab15fc7b992ea1060fa97af79dc760c6"
+    "companion/__main__.py": "f07d5b4485ea617100534412a9266afedd9374b940928228b5f82959ade22ee1",
+    "companion/public_search.py": "4a6b52e4c5b1b7bf5821467b14c1d593ab15fc7b992ea1060fa97af79dc760c6",
+    "companion/console.py": "8e030743fcb77291419e7ece502fe2af7bf14203c97e76eaafa5bb228fb5f236"
   },
   "product": "CharaHarbor",
   "repository": "https://github.com/Cody-kin/CharaHarbor"

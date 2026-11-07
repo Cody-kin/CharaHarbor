@@ -2,6 +2,8 @@ import importlib.util
 import json
 import os
 import tempfile
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -28,3 +30,15 @@ class LauncherTests(unittest.TestCase):
             self.assertEqual(c['provider'],'deepseek');self.assertEqual(c['image_generation']['provider'],'openai')
             self.assertEqual(c['image_generation']['model'],'chosen-image-model')
             self.assertFalse(c['auto_memory_peers']);self.assertFalse(c.get('tasks'))
+
+    def test_demo_redirected_legacy_console_encoding(self):
+        root=Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as td:
+            event=dict(id='encoding-test',account='demo-account',peer='demo-user',
+                       at=__import__('time').time(),kind='text',direction='incoming',group=False,text='今天有点累。')
+            env=dict(os.environ, PYTHONIOENCODING='cp1252')
+            result=subprocess.run([sys.executable,'-m','companion','run','--state',str(Path(td)/'state')],
+                cwd=root,input=json.dumps(event).encode('utf-8'),capture_output=True,env=env)
+            self.assertEqual(result.returncode,0,result.stderr)
+            replies=[json.loads(line) for line in result.stdout.decode('utf-8').splitlines()]
+            self.assertTrue(any(r.get('demo_only') for r in replies))
