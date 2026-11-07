@@ -1,14 +1,18 @@
 # 平台验证记录
 
-版本：0.5.0，日期：2026-11-07。全部使用合成账号、消息、媒体与mock API，不使用个人微信profile或付费key。
+版本：0.5.0，日期：2026-11-07（香港时间）。全部使用合成账号、消息、媒体与 mock API，不使用个人微信 profile 或付费 key。
+
+已验证代码提交：`bd8c28132e59228314d294251f6e1f50a7703514`。三平台 [GitHub Actions 实际运行](https://github.com/Cody-kin/CharaHarbor/actions/runs/42324748815) 全部成功；本记录随后以文档提交补充。
 
 | 环境 | 结果 | 边界 |
 | --- | --- | --- |
-| macOS本机 ARM64 / Python3.9.6 | 139项核心测试在许可本机网络的隔离流程中全部通过；实际安装固定tzdata、运行venv演示、command入口、合成HTTP桥及JPEG/GIF解码；受限模式另有1项监听跳过 | Mac系统JPEG/GIF解码实际运行；Windows/Linux结果仍需各自CI |
-| Linux GitHub-hosted runner / Python3.11 | 待本提交CI执行并核实 | 不是实际微信登录或手机收发 |
-| macOS GitHub-hosted runner / Python3.11 | 待本提交CI执行并核实 | 不等同全部Mac硬件、系统版本 |
-| Windows GitHub-hosted runner / Python3.11 | 待本提交CI执行并核实 | 不含Windows账户ACL及扫码完整验收 |
+| macOS 本机 15.7.4 ARM64 / Python 3.9.6 | 140 项测试全部通过；实际安装固定 tzdata、venv 演示、command 入口、本机合成 HTTP 桥及系统 JPEG/GIF 解码 | 另一次受限环境测试有 1 项监听跳过，不用该次跳过结果替代实际验收 |
+| Linux GitHub runner / Ubuntu 26.04 x64 / Python 3.11.18 | 140 项中 138 通过、2 项 Mac 专用测试跳过；安装、sh 入口、合成 HTTP 桥及独立 Pillow JPEG/GIF 解码全部成功 | 不代表所有 Linux 发行版 |
+| macOS GitHub runner / 26.7.2 ARM64 / Python 3.11.9 | 140 项全部通过；安装、command 入口、合成 HTTP 桥及系统 JPEG/GIF 解码成功 | 不等同全部 Mac 硬件、系统版本 |
+| Windows GitHub runner / Server 2025 x64 (10.0.26100) / Python 3.11.9 | 140 项中 138 通过、2 项 Mac 专用测试跳过；安装、PowerShell 入口、合成 HTTP 桥及独立 Pillow JPEG/GIF 解码全部成功 | 不含 Windows 账户 ACL 全面检查；未单独运行 Windows 11 桌面双击流程 |
 
-对应提交CI需实际通过安装器、系统原生启动入口、测试套件、合成本机HTTP桥以及JPEG/GIF真实解码，才能标为核心通过。没有CI结果时不能把准备好的工作流当成已验证。
+首轮 Windows 演示失败，原因是重定向控制台采用旧编码时无法输出中文。已在命令行/配置向导边界明确使用 UTF-8，并新增强制 cp1252 环境的子进程回归测试；修复后实际 Windows CI 通过。没有忽略或掩盖原失败。
 
-所有三端的真实微信通用版接入、手机图片显示、付费模型权限/费用、Windows本地权限全面检查均仍待独立账号验收。上游原生二进制的多平台构建与本项目Python功能验证是不同的证据。
+测试覆盖安装器、角色同意状态、配置、预算预留、记忆更正/删除/重启、消息聚合、去重、未知发送停止、合成 HTTP 桥、图片服务独立密钥契约及媒体解码。两项 Mac 专用测试在 Windows/Linux 跳过，但额外的平台 smoke 确实调用各自 Pillow 解码器处理 JPEG/GIF，并非只模拟平台名。
+
+所有三端的真实微信通用版扫码、手机图片显示、付费模型权限/费用、Windows 本地权限全面检查仍待独立账号验收。本项目 Python 功能验证与上游原生桥二进制的多平台构建是不同证据。不能把三端核心测试通过称为微信全链路或零配置部署通过。
