@@ -1,46 +1,89 @@
-# CharaHarbor · 角色的港湾
+# CharaHarbor
 
-CharaHarbor 是面向虚构角色陪伴的实验性微信机器人，提供角色、语气、记忆、定时和随机互动。它与腾讯、微信或任何作品官方无关联。文字可选 OpenAI / DeepSeek，图片生成单独配置 OpenAI 模型和密钥。
+**A configurable home for fictional-character companions on WeChat.**
 
-**单入口安装核心，微信登录仍需本人扫码及配置本机桥；不是零配置的三端微信成品。** 不提供原生贴纸发送或电话，也不承诺所有平台的微信登录兼容。
+**English** | [简体中文](README.zh-CN.md)
 
-## 开始使用
+[![Platform validation](https://github.com/Cody-kin/CharaHarbor/actions/workflows/test.yml/badge.svg)](https://github.com/Cody-kin/CharaHarbor/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-1. 从本仓库 **Code → Download ZIP** 下载并解压到自己的目录。
-2. 安装 [Python 3.11+](https://www.python.org/downloads/)（Windows勾选PATH；最低3.9仅支持部分媒体功能）。
-3. Windows 双击 `start.cmd`；macOS 运行 `sh start.command`；Linux 运行 `sh start.sh`。
-4. 安装器仅创建当前目录 `.venv`，从PyPI安装已固定版本的时区/图片库，打开菜单。先选 **1 离线演示**，无需密钥或微信。
-5. 真实使用先完成 [微信桥和扫码](docs/WECHAT.md)，再选 **2 配置向导 → 3 检查配置 → 4 启动真实微信**。
+Build a companion around an editable character: voice and style, separate user/character timezones, persistent conversation, correctable memories, scheduled or random contact, and optional images. Text and image generation have independent provider/model/key configuration—for example, DeepSeek text with OpenAI images.
 
-首次安装需要联网下载Python依赖。`python3 install.py --no-deps --smoke` 可离线检查核心；没有Python或微信登录材料时不能自动完成全部安装。
+**Experimental software, not an official WeChat client.** The Python core and entry points pass Windows, macOS and Linux CI. Live WeChat still needs a separately installed, authorized local bridge and personal QR confirmation. Three-platform real WeChat login/mobile delivery is not verified. This is not zero-configuration deployment.
 
-## 使用指南
+## Try it without an account
 
-- [完整安装、配置、密钥与常驻运行](docs/USER_GUIDE.md)
-- [微信安装、本人扫码、身份与权限](docs/WECHAT.md)
-- [功能与验收矩阵](docs/FEATURES.md)
-- [隐私和故障排查](docs/SECURITY.md)
-- [首次声明与安全词](ONBOARDING.md)、[角色档案与来源](ROLE_GUIDE.md)、[多状态角色](CHARACTER_STATES.md)、[12小时资料更新](RESEARCH.md)
-- [三平台自动测试](https://github.com/Cody-kin/CharaHarbor/actions)；具体结果以对应提交的运行记录为准。
+1. Download the [source release](https://github.com/Cody-kin/CharaHarbor/releases) and extract it.
+2. Install [Python 3.11+](https://www.python.org/downloads/) with pip/venv; enable PATH on Windows.
+3. Start from the extracted project folder:
 
-默认离线、无主动任务、无自动记忆采集。真实模式限定精确私聊ID，首次声明同意后才开始扮演；群聊与陌生人不会处理。角色是虚构陪伴，不冒充现实真人或专业治疗。
+| Windows | macOS | Linux |
+| --- | --- | --- |
+| Double-click `start.cmd` | Run `sh start.command` | Run `sh start.sh` |
 
-## 保留的能力
+The installer creates a local `.venv`, downloads pinned timezone/media dependencies and opens the menu. Select **1 离线演示** (offline demo). No WeChat, key or paid API is used. Initial dependency installation needs the internet. The runtime menu/setup commands currently use Chinese; complete English instructions explain each step.
 
-按联系人和角色隔离的近期上下文、有限规则长期记忆及查改删，消息停顿聚合与去重，定时/随机主动、未回复退避、暂停，原创或带来源的角色档案、多状态及可配置颜文字，双时区与受控资料查询，图片理解、授权图库普通图片发送，以及显式 `/image 描述` 生成插画。
+An offline core-only smoke check is available with `python3 install.py --no-deps --smoke`; see [dependency/platform limits](docs/en/user-guide.md). Existing entry-point filenames remain supported.
 
-图片生成接口与文字服务相互独立，例如 DeepSeek 文字 + OpenAI 图片；其他图片供应商需要实现 `ImageProvider.generate` 的适配，不是改个名字就能工作。复杂自动记忆、任意大厂接口、语音及电话未完成。生成图不是现实照片，当前不内置参考立绘或角色素材。
+## What you can configure
 
-发布仅含源码、公共角色概括、合成测试和示例，不含任何个人微信账号、聊天、记忆库、API key或微信登录数据。新建干净历史，不公开任何现有私有仓库。
+| Capability | Current scope |
+| --- | --- |
+| Character and expression | Sourced profiles, story/spoiler scope, style, bounded states/relationship parameters and per-character kaomoji |
+| Conversation and memory | Message aggregation/deduplication, recent context, limited explicit Chinese fact extraction, view/correct/forget, peer-and-role isolation |
+| Initiative | Daily/random schedules, timezones, pause, shared limits and stop-until-user-replies behavior |
+| Images | Authorized PNG/JPEG/GIF understanding (GIF first frame), ordinary gallery images, explicit `/image description` generation |
+| Model providers | OpenAI/DeepSeek text adapters; separate OpenAI image provider/model/key. Other providers need implementation and testing |
+| Current information | Real IANA timezone clock, opt-in RSS/Atom metadata updates and controlled lookup/search interfaces |
 
-## 开发
+Default configuration is offline, with no proactive tasks, automatic memory collection or image processing. Live chats use exact private-chat allowlists and staged disclosure/consent. Participants can inspect settings and leave roleplay. No auto-expansion to all friends or group replies.
 
-```sh
-python3 -m unittest discover -s tests -v
-python3 install.py --smoke
-python3 tools/platform_smoke.py
+## Read the guides
+
+Start with the [documentation index](docs/en/index.md), then:
+
+- [Install, configure, run and upgrade](docs/en/user-guide.md)
+- [WeChat bridge, identity and personal login](docs/en/wechat-bridge.md)
+- [First-use consent, settings and recovery](docs/en/onboarding.md)
+- [Character profiles](docs/en/character-profiles.md), [states and expressions](docs/en/character-states.md), [source updates](docs/en/source-updates.md)
+- [Capabilities and limits](docs/en/features.md), [privacy/troubleshooting](docs/en/security.md), [executed platform tests](docs/en/platform-validation.md)
+
+Every guide has a matching Chinese page and a visible language switch. [中文文档目录](docs/zh-CN/index.md).
+
+## Know the limits before live use
+
+- The public release's paid-provider tests use mock HTTP, not real paid credentials. Account permissions, model quality, costs and phone delivery need separate acceptance.
+- Memory is a conservative rule-based feature, not unlimited or arbitrary natural-language recall; at most 100 facts per peer/role.
+- Generated images are illustrations, not real photographs; no reference artwork is included. Ordinary images are **not native WeChat stickers**. Native sticker sending, voice notes and phone calls are not implemented.
+- A serial image request can delay later chat by up to its 90-second timeout. Unknown sends stop for review rather than blindly retrying; downtime events may be skipped.
+- Program-side reservations/rate limits are not provider-enforced spending caps. State is plaintext; review Windows ACLs yourself before live use.
+
+See the [full matrix](docs/en/features.md) and [security guide](docs/en/security.md). Character play is fictional companionship, not professional treatment or a claim to be a real person. CharaHarbor is unaffiliated with Tencent/WeChat or any fictional work.
+
+## Project layout and development
+
+```text
+companion/       Runtime core, providers and authenticated bridge adapter
+examples/        Synthetic configuration and evaluation scenarios
+roles/           Editable, sourced fictional-character summaries
+docs/en/        Complete English guides
+docs/zh-CN/     Complete Simplified Chinese guides
+tests/           Synthetic tests; no personal accounts or private chats
+tools/           Platform smoke, documentation and source-safety checks
+start.*          Compatible OS entry points
+install.py       Local environment/dependency installer
+launch.py        Configuration and foreground launcher
 ```
 
-三平台CI验证核心、安装器、时区、合成HTTP桥和媒体解码；它不扫码微信，也不调用付费API。手机送达必须使用单独授权的测试账号验收。
+```sh
+python3 install.py --smoke
+python3 tools/platform_smoke.py
+python3 tools/check_docs.py
+python3 tools/scan_public.py .
+```
 
-MIT许可仅涵盖本项目代码；微信、角色及作品名称归其权利人所有。非官方微信桥有失效和账号受限风险，见[上游平台说明](https://github.com/thisnick/agent-wechat/blob/main/PLATFORM-ACCEPTANCE.md)。
+Report bugs with OS, Python/bridge versions, a safe reason code and a synthetic reproduction. Never attach tokens, account profiles, chat databases or private memories. Contributions should preserve safe defaults and update **both** language versions; [validation details](docs/en/platform-validation.md) describe what CI actually proves.
+
+## License and distribution
+
+[MIT](LICENSE) covers this project's code, not third-party characters, artwork, voices or scripts. No bridge binary, login material, private conversation, personal memory or key is bundled. Unofficial bridge use can fail or lead to account restrictions; consult [upstream platform notes](https://github.com/thisnick/agent-wechat/blob/main/PLATFORM-ACCEPTANCE.md).

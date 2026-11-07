@@ -1,21 +1,8 @@
-# 角色档案与沉浸体验
+# Role Guide
 
-在本地配置中设置 `role_file`，例如配置位于项目根目录时使用 `roles/mutsumi.json`。可复制档案并填写另一位虚构角色，保留revision、plot_point、voice_style、sources和facts；不支持冒充现实私人个体。
+This document has moved. The original path remains available for existing links.
 
-只把来源status=reviewed且事实confidence=verified的条目注入角色设定。未知细节、粉丝推测、失效来源不当作事实。若叶睦示例的旧官方人物链接本轮404，已标needs_recheck；没有编造完整剧情或复制剧本。角色档案是可修改的原创概括，不带官方图像、音频或台词全集。
+本文已整理至双语文档目录，旧路径继续保留。
 
-普通“你是谁”回答角色名。明确询问“你是AI吗/现实中是真人吗”时简短诚实。首次声明说明虚构、非专业治疗及数据使用并等待明确同意，之后逐步设置；/about查看说明、/exitrole退出，默认不反复插入免责声明。危机回应也保持自然语气，清楚关心眼前安全、鼓励可信任的人/专业及紧急支持；不能由沉浸同意取消安全处理。
-
-目前没有自动联网研究任意角色的产品功能；本轮由开发代理只读核对官方来源并建立了基础示例。下一步研究器应先形成待审核候选档案，记录URL/日期/事实与解释/剧情时点/不确定项，经用户确认再启用；不可静默抓取受限站点或导入未授权素材。
-
-应评估的多轮场景：普通身份与真实性区分、具体安慰、跨轮人物称呼/约定、纠正设定、不捏造共同经历、头像/图片语境、用户暂停、严重危机的自然安全回应。现有生产4项角色回归与1项自然安全回应测试不能代表完整角色或通用模型均已通过。
-
-## 可追溯画像与修订
-
-参考 [Distilly](https://github.com/titanwings/distilly) 与 [anyone-to-skill](https://github.com/OpenDemon/anyone-to-skill) 的可追溯画像思路；没有安装其依赖、复制实现或把它们描述成训练复制人格。若未来移植代码，须再次核对具体版本许可与署名要求。
-
-`work_version`、`plot_point`、`spoiler_scope` 明确不同改编和时间线。`traits`、`relationships` 每条有稳定id、text、context、origin、confidence和source。官方条目必须有已审核来源及verified置信度；推断必须有已审核来源且标probable，注入时保留推断标签；用户自设必须显式approved_user_override，不冒充官方。未知、矛盾和过期内容不自动填补。
-
-`revision_diff(before, after)` 列出画像新增、变化、删除及时间线范围变化；仅用于本地审核，不会联网、自动批准或热切换。角色档案与每位用户的现实对话记忆分开；虚构日常情境最多保留12小时，不能被记为真实共同经历。
-
-`examples/role-holdout.json` 是独立多轮评测场景与判据，包含改写身份提问、角色日常与现实经历区分、未知剧情、纠正和退出。它尚未经过真实模型评测，不能把提供场景等同于角色一致性达标。定时研究只提供有限来源元数据，不会自动蒸馏整个角色；详见RESEARCH.md。
+- [English](docs/en/character-profiles.md)
+- [简体中文](docs/zh-CN/character-profiles.md)

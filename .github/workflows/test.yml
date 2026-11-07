@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Check bilingual documentation and local links
+        run: python tools/check_docs.py
       - name: Install and offline demo
         run: python install.py --smoke
       - name: Test native launcher, core, loopback bridge and media
