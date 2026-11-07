@@ -1,0 +1,4 @@
+[
+  {"id":"morning","kind":"daily","at":"09:30","peer":"demo-user","prompt":"用自然简短的话问候。不要编造现实生活经历。"},
+  {"id":"random-care","kind":"random","min_seconds":5400,"max_seconds":10800,"peer":"demo-user","prompt":"联系近期语境，选择合适的话题；不要索求回复或制造紧迫感。"}
+]

@@ -1,0 +1,10 @@
+.companion-state/
+.setup-demo-state/
+*.sqlite*
+*.db
+.env*
+config.local.json
+__pycache__/
+*.pyc
+*.log
+.venv/

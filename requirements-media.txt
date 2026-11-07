@@ -1,0 +1,3 @@
+# Optional JPEG/GIF backend outside macOS. Requires Python >=3.11.
+# No installation is performed by application startup.
+Pillow==13.0.0

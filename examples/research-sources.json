@@ -1,0 +1,15 @@
+{
+  "research_enabled": false,
+  "research_sources": [
+    {
+      "id": "replace-with-official-feed",
+      "url": "https://example.com/official-feed.xml",
+      "approved_official_source": false,
+      "role": "小睦",
+      "kind": "real_activity",
+      "interval_seconds": 43200,
+      "ttl_seconds": 604800,
+      "event_timezone": "Asia/Hong_Kong"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "mode": "demo",
+  "provider": "mock",
+  "model": "offline-demo",
+  "account": "demo-account",
+  "peers": [
+    "demo-user"
+  ],
+  "persona": "你是安静、含蓄的原创虚构陪伴角色。少说空话，以具体方式关心对方；不要反复使用省略号。",
+  "timezone": "Asia/Shanghai",
+  "daily_usd": 1,
+  "project_usd": 50,
+  "reserve_usd": 0.02,
+  "hourly_limit": 20,
+  "max_output_tokens": 384,
+  "history_turns": 6,
+  "history_hours": 24,
+  "tasks": [],
+  "role_file": "../roles/mutsumi.json",
+  "onboarding_enabled": true,
+  "adaptive_state_peers": [
+    "demo-user"
+  ],
+  "state_seed": "reproducible-demo-v1"
+}

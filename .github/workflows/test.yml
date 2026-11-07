@@ -1,0 +1,24 @@
+name: platform-validation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install and offline demo
+        run: python install.py --smoke
+      - name: Test native launcher, core, loopback bridge and media
+        run: python tools/platform_smoke.py
+      - name: Public-source leak scan
+        run: python tools/scan_public.py .

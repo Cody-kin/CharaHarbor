@@ -1,0 +1,8 @@
+{
+  "research_enabled": false,
+  "research_dns": "google_https",
+  "research_sources": [
+    {"id":"bang-dream-official","url":"https://bang-dream.com/feed/","role":"小睦","kind":"real_activity","approved_official_source":true,"interval_seconds":43200,"ttl_seconds":604800},
+    {"id":"avemujica-anime-official","url":"https://anime.bang-dream.com/avemujica/feed/","role":"小睦","kind":"real_activity","approved_official_source":true,"interval_seconds":43200,"ttl_seconds":604800}
+  ]
+}
